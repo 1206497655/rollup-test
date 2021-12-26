@@ -1,6 +1,6 @@
-import vue2 from 'rollup-plugin-vue2';
+import vue from 'rollup-plugin-vue2';
 import less from 'rollup-plugin-less';
-import postcss from 'rollup-plugin-postcss';
+// import postcss from 'rollup-plugin-postcss';
 import buble from 'rollup-plugin-buble';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
@@ -19,12 +19,10 @@ export default {
               { find: '@', replacement: __dirname + '/src' },
             ]
         }),
-        vue2({
-            css: true,
-            compileTemplate: true
+        vue(),
+        less({
+            output: './dist/bundle.css'
         }),
-        less(),
-        postcss(),
         buble(),
         nodeResolve({ browser: true, main: true }),
         commonjs()
